@@ -1,0 +1,94 @@
+import turtle
+import math
+
+# Screen setup
+screen = turtle.Screen()
+screen.title("Happy Birthday Design")
+screen.bgcolor("black")
+
+# Initialize turtle
+pen = turtle.Turtle()
+pen.speed(0)
+pen.hideturtle()
+
+def draw_spirograph(x, y, size, colors):
+    pen.penup()
+    pen.goto(x, y)
+    pen.pendown()
+    for i in range(36):
+        pen.color(colors[i % len(colors)])
+        pen.circle(size)
+        pen.right(10)
+
+def draw_star(x, y, size, colors):
+    pen.penup()
+    pen.goto(x, y)
+    pen.pendown()
+    for color in colors:
+        pen.color(color)
+        pen.begin_fill()
+        for _ in range(5):
+            pen.forward(size)
+            pen.right(144)
+        pen.end_fill()
+        size -= 10
+
+def write_text(text, x, y, font_size, color):
+    pen.penup()
+    pen.goto(x, y)
+    pen.color(color)
+    pen.write(text, align="center", font=("Arial", font_size, "bold"))
+
+def draw_heart(x, y, size, color):
+    pen.penup()
+    pen.goto(x, y)
+    pen.pendown()
+    pen.color(color)
+    pen.begin_fill()
+    pen.left(50)
+    pen.forward(size)
+    pen.circle(size / 2, 180)
+    pen.right(90)
+    pen.circle(size / 2, 180)
+    pen.forward(size)
+    pen.end_fill()
+    pen.setheading(0)
+
+# Draw spirographs
+colors = ["red", "blue", "yellow", "white", "orange"]
+draw_spirograph(-200, 200, 50, colors)
+draw_spirograph(200, 200, 50, colors)
+
+# Write the name
+write_text("KHUSHI", 0, 120, 30, "yellow")
+
+# Draw the cake
+pen.penup()
+pen.goto(-40, 80)
+pen.color("pink")
+pen.begin_fill()
+pen.goto(40, 80)
+pen.goto(40, 60)
+pen.goto(-40, 60)
+pen.goto(-40, 80)
+pen.end_fill()
+pen.color("red")
+pen.goto(0, 80)
+pen.dot(10)
+
+# Write Happy Birthday
+write_text("HAPPY BIRTHDAY", 0, 30, 20, "cyan")
+
+# Draw decorative stars
+draw_star(-300, -100, 50, ["blue", "yellow", "orange"])
+draw_star(300, -100, 50, ["green", "red", "white"])
+
+# Draw a heart
+draw_heart(0, -50, 50, "yellow")
+
+# Add your additional creative element (optional)
+write_text("Have a Great Day!", 0, -120, 15, "lightgreen")
+
+# Finish
+turtle.done()
+  
